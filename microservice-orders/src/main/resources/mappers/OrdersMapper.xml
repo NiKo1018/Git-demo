@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.shop.order.mapper.OrdersMapper">
+  <resultMap id="BaseResultMap" type="com.yang.shop.order.po.Orders">
+    <!--@mbg.generated-->
+    <!--@Table orders-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="user_id" jdbcType="CHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="del_state" jdbcType="INTEGER" property="delState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, create_time, money, `status`, del_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from orders
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yang.shop.order.po.Orders">
+    <!--@mbg.generated-->
+    insert into orders (id, user_id, create_time, 
+      money, `status`, del_state
+      )
+    values (#{id,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{money,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{delState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yang.shop.order.po.Orders">
+    <!--@mbg.generated-->
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="delState != null">
+        del_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="delState != null">
+        #{delState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yang.shop.order.po.Orders">
+    <!--@mbg.generated-->
+    update orders
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="delState != null">
+        del_state = #{delState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yang.shop.order.po.Orders">
+    <!--@mbg.generated-->
+    update orders
+    set user_id = #{userId,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      money = #{money,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=INTEGER},
+      del_state = #{delState,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <delete id="deleteOrderByUserId">
+    delete from orders where user_id=#{value}
+  </delete>
+
+</mapper>

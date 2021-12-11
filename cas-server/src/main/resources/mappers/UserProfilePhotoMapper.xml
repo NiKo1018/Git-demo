@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.shop.auth.mapper.UserProfilePhotoMapper">
+  <resultMap id="BaseResultMap" type="com.yang.shop.auth.po.UserProfilePhoto">
+    <!--@mbg.generated-->
+    <!--@Table user_profile_photo-->
+    <result column="id" jdbcType="CHAR" property="id" />
+    <result column="pic_name" jdbcType="VARCHAR" property="picName" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yang.shop.auth.po.UserProfilePhoto">
+    <!--@mbg.generated-->
+    insert into user_profile_photo (id, pic_name, pic_url, 
+      user_id)
+    values (#{id,jdbcType=CHAR}, #{picName,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yang.shop.auth.po.UserProfilePhoto">
+    <!--@mbg.generated-->
+    insert into user_profile_photo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="picName != null">
+        pic_name,
+      </if>
+      <if test="picUrl != null">
+        pic_url,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="picName != null">
+        #{picName,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null">
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.shop.auth.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.yang.shop.auth.po.Role">
+    <!--@mbg.generated-->
+    <!--@Table role-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="english_name" jdbcType="VARCHAR" property="englishName" />
+    <result column="chinese_name" jdbcType="VARCHAR" property="chineseName" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, english_name, chinese_name, `status`, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from role
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yang.shop.auth.po.Role">
+    <!--@mbg.generated-->
+    insert into role (id, english_name, chinese_name, 
+      `status`, create_time)
+    values (#{id,jdbcType=CHAR}, #{englishName,jdbcType=VARCHAR}, #{chineseName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yang.shop.auth.po.Role">
+    <!--@mbg.generated-->
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="englishName != null">
+        english_name,
+      </if>
+      <if test="chineseName != null">
+        chinese_name,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="englishName != null">
+        #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseName != null">
+        #{chineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yang.shop.auth.po.Role">
+    <!--@mbg.generated-->
+    update role
+    <set>
+      <if test="englishName != null">
+        english_name = #{englishName,jdbcType=VARCHAR},
+      </if>
+      <if test="chineseName != null">
+        chinese_name = #{chineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yang.shop.auth.po.Role">
+    <!--@mbg.generated-->
+    update role
+    set english_name = #{englishName,jdbcType=VARCHAR},
+      chinese_name = #{chineseName,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

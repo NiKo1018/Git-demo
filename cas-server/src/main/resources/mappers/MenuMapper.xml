@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.shop.auth.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.yang.shop.auth.po.Menu">
+    <!--@mbg.generated-->
+    <!--@Table menu-->
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="parent_id" jdbcType="CHAR" property="parentId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_logo" jdbcType="VARCHAR" property="menuLogo" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="menu_key" jdbcType="VARCHAR" property="menuKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, parent_id, menu_name, menu_logo, menu_url, `status`, create_time, menu_key
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from menu
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yang.shop.auth.po.Menu">
+    <!--@mbg.generated-->
+    insert into menu (id, parent_id, menu_name, 
+      menu_logo, menu_url, `status`, 
+      create_time, menu_key)
+    values (#{id,jdbcType=CHAR}, #{parentId,jdbcType=CHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{menuLogo,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{menuKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yang.shop.auth.po.Menu">
+    <!--@mbg.generated-->
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="menuLogo != null">
+        menu_logo,
+      </if>
+      <if test="menuUrl != null">
+        menu_url,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="menuKey != null">
+        menu_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=CHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLogo != null">
+        #{menuLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuKey != null">
+        #{menuKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yang.shop.auth.po.Menu">
+    <!--@mbg.generated-->
+    update menu
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=CHAR},
+      </if>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLogo != null">
+        menu_logo = #{menuLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuKey != null">
+        menu_key = #{menuKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yang.shop.auth.po.Menu">
+    <!--@mbg.generated-->
+    update menu
+    set parent_id = #{parentId,jdbcType=CHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_logo = #{menuLogo,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      menu_key = #{menuKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+    <select id="findMenusByUserId" resultMap="BaseResultMap">
+      select menu.* from user,user_role_relation,role,role_menu_relation,menu where user.id=#{value} and
+      user.id=user_role_relation.user_id and user_role_relation.role_id=role.id and role.id=role_menu_relation.role_id and
+      role_menu_relation.menu_id=menu.id
+    </select>
+</mapper>
